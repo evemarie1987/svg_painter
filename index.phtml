@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<!-- Balises Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+	<title>PHP et JS</title>
+
+	<!-- Libraries CSS et polices -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+	<link rel="stylesheet" href="css/font-awesome.css">
+
+	<!-- Feuille CSS du projet -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Library JQuery -->
+	<script src="js/jquery-3.2.1.js"></script>
+
+	<!-- Utilitaires JS -->
+	<script src="js/utilities.js"></script>
+</head>
+
+<body>
+	<!-- HEADER -->
+	<header>
+		
+	</header>
+	
+	<!-- MAIN CONTENT -->
+	<main>
+		<h1>Dessineur de formes</h1>
+		<form action="" method="post" id="config">
+			<fieldset>
+				<span class="shape" id="rectangle"></span>
+				<span class="shape" id="square"></span>
+				<span class="shape" id="circle"></span>
+				<span class="shape" id="ellipse"></span>
+				<span class="shape" id="triangle"></span>
+
+				<span id="draw" class="btn">Dessin !</span>
+			</fieldset>
+
+			<div id="shapes">
+				<?php foreach ($shapes as $key => $shape) {
+					$type = $types[$key];
+					include 'fieldset.phtml';
+				} ?>
+			</div>
+		</form>
+
+		<svg viewBox='0 0 <?=SVG::WIDTH?> <?=SVG::HEIGHT?>'>
+			<?php if($result) $svg->run(); ?>
+		</svg>
+	
+	</main>
+	
+	<!-- FOOTER --> 
+	<footer>
+		
+	</footer>
+
+	<!-- Scripts JS -->
+	<script src="js/main.js"></script>
+</body>
+</html>

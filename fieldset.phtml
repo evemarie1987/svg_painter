@@ -1,0 +1,73 @@
+<fieldset>
+	<legend class="hide btn"><?= $shape::NAME ?><i class="fa fa-hand-o-left"></i></legend>
+
+		<button class="del btn"><i class="fa fa-times"></i></button>
+	<div>
+	
+	
+		<input type="hidden" name="type[]" value="<?= $type ?>">
+	
+		<ul>
+			<li>
+				<label>Couleur
+					<input type="color" name="color[]" value="<?= $shape->getColor() ?>">
+				</label>
+			</li>
+	
+			<li>
+				<label>Opacity
+					<input type="range" name="opacity[]" min="0.01" max="1" step='0.01' value="<?= $shape->getOpacity() ?>">
+				</label>
+			</li>
+	
+			<li>
+				<label>X : 
+					<input type="number" name="x0[]" min="0" max="<?= SVG::WIDTH ?>" value="<?= $shape->getX() ?>">
+				</label>
+				<label> Y : 
+					<input type="number" name="y0[]" min="0" max="<?= SVG::HEIGHT ?>" value="<?= $shape->getY() ?>">
+				</label>
+				<small>(<?= $shape::LOC ?>)</small>
+			</li>
+	
+			<li>
+				<?php if (!($type == SVG::TRIANGLE)): ?>
+					<label><?= $shape::DIM1 ?>
+						<input type="number" name="dim1[]" min="1" max="<?= SVG::WIDTH ?>" value="<?= $shape->getDim1() ?>">
+					</label>
+					<?php if($type == SVG::RECTANGLE || $type == SVG::ELLIPSE): ?>
+						<label><?= $shape::DIM2 ?>
+							<input type="number" name="dim2[]" min="1" max="<?= SVG::HEIGHT ?>" value="<?= $shape->getDim2() ?>">
+						</label>
+					<?php else : ?>
+						<input type="hidden" name="dim2[]" value="0">
+					<?php endif ?>
+					<input type="hidden" name="x1[]" value="0">
+					<input type="hidden" name="y1[]" value="0">
+					<input type="hidden" name="x2[]" value="0">
+					<input type="hidden" name="y2[]" value="0">
+				
+				<?php else: ?>
+					<input type="hidden" name="dim1[]" value="0">
+					<input type="hidden" name="dim2[]" value="0">
+					<label>X : 
+					<input type="number" name="x1[]" min="0" max="<?= SVG::WIDTH ?>" value="<?= $shape->getPtB()->getX() ?>">
+						</label>
+						<label> Y : 
+							<input type="number" name="y1[]" min="0" max="<?= SVG::HEIGHT ?>" value="<?= $shape->getPtB()->getY() ?>">
+						</label>
+						<small>(Point B)</small>
+					</li>
+					<li>
+						<label>X : 
+							<input type="number" name="x2[]" min="0" max="<?= SVG::WIDTH ?>" value="<?= $shape->getPtC()->getX() ?>">
+						</label>
+						<label> Y : 
+							<input type="number" name="y2[]" min="0" max="<?= SVG::HEIGHT ?>" value="<?= $shape->getPtC()->getY() ?>">
+						</label>
+						<small>(Point C)</small>
+				<?php endif ?>
+			</li>
+		</ul>
+	</div>
+</fieldset>
